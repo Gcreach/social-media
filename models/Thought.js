@@ -5,7 +5,7 @@ const thoughtSchema = new Schema(
       thoughtText: {
         type: String,
         required: true,
-        //character limit here
+        maxLength: 280,
       },
       createdAt: {
         type: Date,
@@ -16,13 +16,38 @@ const thoughtSchema = new Schema(
         required: true,
       },
       reactions: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Reaction',
-        },
+       reactionSchema
     ],
     }
 );
+
+const reactionSchema = new Schema(
+  {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: ObjectId,
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      maxLength: 280,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+  {
+  toJSON: {
+    getters: true,
+    virtuals: true,
+  },
+}
+)
 
 thoughtSchema 
     .virtual('reactionCount')
