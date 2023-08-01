@@ -71,7 +71,11 @@ module.exports = {
 
     async createReaction(req, res) {
         try {
-            const reaction = thought.create();
+            const thought = thought.create(
+            { _id: req.params.thoughtId },
+            { $addToSet: { reactions: req.params.reactionId } },
+            { runValidators: true, new: true }
+            );
         }
         catch (err) {
             res.status(500).json(err);
@@ -80,7 +84,7 @@ module.exports = {
 
     async deleteReaction(req, res) {
         try {
-            const reaction = thought.delete();
+            const thought = thought.delete();
         }
         catch (err) {
             res.status(500).json(err);
