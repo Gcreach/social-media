@@ -11,16 +11,8 @@ const {
 
 router.route('/').get(getThoughts).post(createThought);
 
-router.route('/api/thoughts/:thoughtId').get(getSingleThought);
+router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(deleteThought)
 
-router.route('/api/thoughts/:thoughtId').post(createThought);
-
-router.route('/api/thoughts/:thoughtId').put(updateThought);
-
-router.route('/api/thoughts/:thoughtId').delete(deleteThought);
-
-router.route('/api/thoughts/:thoughtId/reactions').post(createReaction);
-
-router.route('/api/thoughts/:thoughtId/reactions').delete(deleteReaction);
+router.route('/:thoughtId/reactions').post(createReaction).delete(deleteReaction)
 
 module.exports = router;

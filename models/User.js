@@ -14,6 +14,7 @@ const userSchema = new Schema(
         required: true,
         unique: true,
         // match validation here
+        match: /\w+@\w+\.\w{2,6}/
     },
     thoughts: [
       {
@@ -24,7 +25,7 @@ const userSchema = new Schema(
     friends: [
         {
             type: Schema.Types.ObjectId,
-            ref: userId,
+            ref: 'User',
         },
     ],
   },
@@ -42,6 +43,6 @@ userSchema
     return `${this.friends}`;
   });
 
-  const User = model('user', userSchema);
+  const User = model('User', userSchema);
 
   module.exports = User;

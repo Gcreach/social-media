@@ -1,4 +1,4 @@
-const { User, Friend, Thought } = require('../models');
+const { User, Thought } = require('../models');
 
 module.exports = {
   // Get all users
@@ -79,7 +79,7 @@ module.exports = {
             return res.status(404).json({ message: 'No user with that ID' });
         }
 
-        res.json({ message: 'Friend Added to your list' })
+        res.json({ message: 'Friend Added to your list' });
         } catch (err) {
         res.status(500).json(err);
     }
@@ -87,9 +87,9 @@ module.exports = {
 
   async deleteFriend(req, res) {
     try {
-      const user = await user.findOneAndDelete(
+      const user = await user.findOneAndUpdate(
             { _id: req.params.userId },
-            { $deleteToSet: { friends: req.params.friendId } },
+            { $pull: { friends: req.params.friendId } },
             { runValidators: true, new: true }
       );
 
@@ -97,8 +97,7 @@ module.exports = {
         return res.status(404).json({ message: 'No user with that ID' });
       }
 
-      await user.deleteMany({ _id: userId});
-      res.json({ message: 'User and associated thoughts deleted!' })
+      res.json({ message: 'User deleted!' })
     } catch (err) {
       res.status(500).json(err);
     }
