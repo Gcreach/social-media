@@ -27,7 +27,7 @@ Install the app from Github then run npm i in the terminal
 
 Open up the terminal and run the server. Use insomia to go through GET, POST, PUT, and DELETE for Friends, Users, Thoughts, and Reactions.
 
-![Demo video](./assets/IMG.PNG)()
+![Demo video](./assets/IMG.JPG)(https://drive.google.com/file/d/1RvIDU4HV1f27NfBS-Gww93uO05rLHJmu/view?usp=sharing)
 
 ## Credits
 
